@@ -1,0 +1,188 @@
+<section id="booking">
+    <div class="container">
+        <h2>Book Your Turf</h2>
+        <form class="booking-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="duration">Duration (hours):</label>
+            <input type="number" id="duration" name="duration" min="1" max="5" required>
+
+            <button type="submit">Book Now</button>
+        </form>
+        <div id="booking-note"></div>
+    </div>
+</section>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f5f5f5;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    header {
+        background-color: #2a9d8f;
+        padding: 20px 0;
+        color: #fff;
+        text-align: center;
+    }
+    
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+    
+    .nav-links li {
+        display: inline;
+    }
+    
+    .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .hero {
+        background: url('turf_background.jpg') no-repeat center center/cover;
+        color: #fff;
+        text-align: center;
+        padding: 100px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 3em;
+        margin: 0 0 20px;
+    }
+    
+    .hero p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+    
+    .cta-button {
+        background-color: #e9c46a;
+        color: #fff;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+    
+    .cta-button:hover {
+        background-color: #f4a261;
+    }
+    
+    section {
+        padding: 60px 20px;
+    }
+    
+    h2 {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+    
+    .responsive {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+    
+    .booking-form, .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .booking-form label, .auth-form label {
+        font-size: 1.2em;
+    }
+    
+    .booking-form input, .booking-form button, .auth-form input, .auth-form button {
+        padding: 10px;
+        font-size: 1em;
+    }
+    
+    .booking-form button, .auth-form button {
+        background-color: #2a9d8f;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    .booking-form button:hover, .auth-form button:hover {
+        background-color: #264653;
+    }
+    
+    footer {
+        background-color: #264653;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+    }
+    </style>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const bookingForm = document.querySelector(".booking-form");
+        const bookingNote = document.getElementById("booking-note");
+    
+        bookingForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+            const duration = document.getElementById("duration").value;
+    
+            const creditsUsed = duration * 10;
+            
+            bookingNote.innerHTML = `
+                <p>Thank you, ${name}! Your booking is confirmed for ${date} at ${time} for ${duration} hour(s). You have used ${creditsUsed} credits.</p>
+            `;
+            
+            bookingNote.style.transition = "opacity 1s ease-in-out";
+            bookingNote.style.opacity = 1;
+    
+            setTimeout(() => {
+                bookingNote.style.opacity = 0;
+            }, 5000);
+        });
+    });
+    
+    </script>
